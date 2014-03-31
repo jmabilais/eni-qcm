@@ -4,3 +4,5 @@ composer.phar
 autoload.php
 /vendor/
 /nbproject/
+/app/cache/
+/app/logs/
