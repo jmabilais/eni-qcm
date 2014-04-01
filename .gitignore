@@ -6,3 +6,4 @@ autoload.php
 /nbproject/
 /app/cache/
 /app/logs/
+/web/
