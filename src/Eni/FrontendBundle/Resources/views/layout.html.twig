@@ -1,0 +1,33 @@
+<html>
+	<head>
+		{% stylesheets 
+			'@EniFrontendBundle/Resources/public/css/bootstrap.min.css'
+			'@EniFrontendBundle/Resources/public/css/eni-qcm.css'
+			filter="cssrewrite" %}
+			<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+		<title>{% block title %}{% endblock %} - ENI QCM</title>
+	</head>
+	<body>
+		<div class ="container">
+			<div id="header" class="row">
+				<div class="col-md-2">
+					<img id="logo_header_eni" src="{{ asset('bundles/eniFrontend/images/eni_logo.jpg') }}" title="Logo ENI école-informatique" alt="Logo ENI école-informatique">
+				</div>
+				<h1 class="col-md-9">QCM Eni</h1>
+			</div>
+			<div id="content">
+				{% block content %}{% endblock %}
+			</div>
+	        <div id="footer">
+	            {% block footer %}
+	            {% endblock %}
+	        </div>
+	    </div>
+        {% javascripts
+        	'@EniFrontendBundle/Resources/public/js/jquery.js' 
+        	'@EniFrontendBundle/Resources/public/js/bootstrap.min.js' %}
+        	<script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+	</body>
+</html>

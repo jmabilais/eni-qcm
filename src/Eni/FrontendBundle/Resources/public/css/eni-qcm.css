@@ -1,0 +1,11 @@
+body{
+	font-family: "Trebuchet MS",Helvetica,Jamrul,sans-serif;
+	color: #555;
+}
+#header h1{
+	font-size: 50px;
+}
+
+#logo_header_eni{
+	width: 100px;
+}
