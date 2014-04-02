@@ -2,9 +2,21 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="1">
-                <source>Symfony2 is great</source>
-                <target>J'aime Symfony2</target>
+            <trans-unit id="security.login.username">
+                <source>security.login.username</source>
+                <target>Identifiant</target>
+            </trans-unit>
+            <trans-unit id="security.login.password">
+                <source>security.login.password</source>
+                <target>Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="security.login.remember_me">
+                <source>security.login.remember_me</source>
+                <target>Se souvenir de moi</target>
+            </trans-unit>
+            <trans-unit id="security.login.submit">
+                <source>security.login.submit</source>
+                <target>Se connecter</target>
             </trans-unit>
         </body>
     </file>
