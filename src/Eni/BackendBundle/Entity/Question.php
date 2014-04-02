@@ -39,7 +39,7 @@ class Question {
 	private $reponsesProposees;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="QuestionTirage", mappedBy="question", cascade={"persist"})
+	 * @ORM\OneToMany(targetEntity="Eni\FrontendBundle\Entity\QuestionTirage", mappedBy="question", cascade={"persist"})
 	 */
 	private $questionTirages;
 

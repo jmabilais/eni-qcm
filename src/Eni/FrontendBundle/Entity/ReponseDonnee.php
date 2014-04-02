@@ -28,7 +28,7 @@ class ReponseDonnee {
 	private $questionTirage;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="ReponseProposee", cascade={"all"}, inversedBy="reponsesDonnees")
+	 * @ORM\ManyToOne(targetEntity="Eni\BackendBundle\Entity\ReponseProposee", cascade={"all"}, inversedBy="reponsesDonnees")
 	 * @ORM\JoinColumn(name="reponse_proposee_id", referencedColumnName="id", nullable=false)
 	 */
 	private $reponseProposee;

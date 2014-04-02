@@ -46,12 +46,12 @@ class Test {
 	private $seuil;
 
 	/**
-	 * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="tests")
+	 * @ORM\ManyToMany(targetEntity="Eni\UserBundle\Entity\Utilisateur", mappedBy="tests")
 	 */
 	private $utilisateurs;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Inscription", mappedBy="test", cascade={"persist"})
+	 * @ORM\OneToMany(targetEntity="Eni\FrontendBundle\Entity\Inscription", mappedBy="test", cascade={"persist"})
 	 */
 	private $inscriptions;
 

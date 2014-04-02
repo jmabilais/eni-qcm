@@ -37,7 +37,7 @@ class ReponseProposee {
 	private $valide;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="ReponseDonnee", mappedBy="reponseProposee", cascade={"persist"})
+	 * @ORM\OneToMany(targetEntity="Eni\FrontendBundle\Entity\ReponseDonnee", mappedBy="reponseProposee", cascade={"persist"})
 	 */
 	private $reponsesDonnees;
 

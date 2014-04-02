@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * @ORM\Table(name="utilisateur")
  */
 class Utilisateur extends BaseUser
 {
@@ -29,13 +29,13 @@ class Utilisateur extends BaseUser
     private $prenom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Promotion", cascade={"all"}, inversedBy="utilisateurs")
+     * @ORM\ManyToOne(targetEntity="Eni\FrontendBundle\Entity\Promotion", cascade={"all"}, inversedBy="utilisateurs")
      * @ORM\JoinColumn(name="promotion_id", referencedColumnName="id", nullable=true)
      */
     private $promotion;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Test", inversedBy="utilisateurs")
+     * @ORM\ManyToMany(targetEntity="Eni\BackendBundle\Entity\Test", inversedBy="utilisateurs")
      * @ORM\JoinTable(name="utilisateur_test",
      *      joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="test_id", referencedColumnName="id")}
@@ -44,7 +44,7 @@ class Utilisateur extends BaseUser
     private $tests;
 
     /**
-     * @ORM\OneToMany(targetEntity="Inscription", mappedBy="utilisateur", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Eni\FrontendBundle\Entity\Inscription", mappedBy="utilisateur", cascade={"persist"})
      */
     private $inscriptions;
 

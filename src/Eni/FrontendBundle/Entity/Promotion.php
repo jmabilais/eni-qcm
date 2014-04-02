@@ -29,7 +29,7 @@ class Promotion {
 	private $libelle;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="promotion", cascade={"persist"})
+	 * @ORM\OneToMany(targetEntity="Eni\UserBundle\Entity\Utilisateur", mappedBy="promotion", cascade={"persist"})
 	 */
 	private $utilisateurs;
 

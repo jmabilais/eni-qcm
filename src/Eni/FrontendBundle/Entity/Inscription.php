@@ -45,13 +45,13 @@ class Inscription {
 	private $resultatObtenu;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Utilisateur", cascade={"all"}, inversedBy="inscriptions")
+	 * @ORM\ManyToOne(targetEntity="Eni\UserBundle\Entity\Utilisateur", cascade={"all"}, inversedBy="inscriptions")
 	 * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
 	 */
 	private $utilisateur;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Test", cascade={"all"}, inversedBy="inscriptions")
+	 * @ORM\ManyToOne(targetEntity="Eni\BackendBundle\Entity\Test", cascade={"all"}, inversedBy="inscriptions")
 	 * @ORM\JoinColumn(name="test_id", referencedColumnName="id")
 	 */
 	private $test;
