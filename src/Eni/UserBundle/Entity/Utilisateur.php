@@ -2,6 +2,7 @@
 
 namespace Eni\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -52,6 +53,7 @@ class Utilisateur extends BaseUser
      * Constructor
      */
     public function __construct() {
+        parent::__construct();
         $this->tests = new ArrayCollection();
         $this->inscriptions = new ArrayCollection();
     }
