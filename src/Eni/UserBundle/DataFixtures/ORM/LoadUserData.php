@@ -44,7 +44,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
 
         $userPierre = $userManager->createUser();
         $userPierre->setUsername('pvakala');
-        $userPierre->setPassword('test');
+        $userPierre->setPlainPassword('test');
         $userPierre->setNom('Vakala');
         $userPierre->setPrenom('Pierre');
         $userPierre->addRole('ROLE_CANDIDAT');
