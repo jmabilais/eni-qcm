@@ -1,0 +1,33 @@
+{% extends 'EniFrontendBundle::layout.html.twig' %}
+
+{% block content %}
+	
+   <div class="alert alert-success">{{ nom }} {{ prenom }} - Formateur</div>
+   
+
+   <nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Accueil</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Question</a></li>
+        <li><a href=" {{ path('theme') }}">Theme</a></li>
+        <li><a href="#">Test</a></li>
+        <li><a href="#">Inscription</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+        
+{% endblock %}
