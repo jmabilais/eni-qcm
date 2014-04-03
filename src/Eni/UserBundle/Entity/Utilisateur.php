@@ -171,4 +171,11 @@ class Utilisateur extends BaseUser
     public function getInscriptions() {
         return $this->inscriptions;
     }
+
+    /**
+     * Check if user is a "Formateur"
+     */
+    public function isFormateur(){
+        return in_array('ROLE_FORMATEUR', $this->getRoles());
+    }
 }

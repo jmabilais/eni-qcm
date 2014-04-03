@@ -1,0 +1,9 @@
+services:
+    eni.main_bundle.login_listener:
+        class: Eni\UserBundle\Listener\LoginListener
+        arguments:
+            - @security.context
+            - @router
+            - @event_dispatcher
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login }
