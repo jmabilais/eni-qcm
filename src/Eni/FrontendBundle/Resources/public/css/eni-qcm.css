@@ -17,3 +17,17 @@ body{
 #logo_header_eni{
 	width: 100px;
 }
+.theme-action{
+        padding-left: 10px;
+}
+.themes-ajouter{
+        margin-top: 10px;
+}
+ul li {
+    list-style-type: none;
+}
+
+.theme-records_list li{
+    margin-bottom: 10px;
+    
+}

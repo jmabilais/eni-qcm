@@ -1,41 +1,22 @@
 {% extends 'EniBackendBundle::layout.html.twig' %}
 
 {% block BackendContent %}
-    <h1>Theme list</h1>
+    <h1>{{'theme.list.title'|trans}}</h1>
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Libelle</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <ul class="theme-records_list">
+       
+        
         {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('theme_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.libelle }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('theme_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('theme_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
+            <li class="row">
+                <span class="col-md-3"> {{ entity.libelle }}</span>
+                        <a class="btn btn-info" href="{{ path('theme_edit', { 'id': entity.id }) }}">edit</a>
+            </li>
         {% endfor %}
-        </tbody>
-    </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('theme_new') }}">
-                Create a new entry
-            </a>
-        </li>
     </ul>
-    {% endblock %}
+    <div class="themes-ajouter">
+         <a class="btn btn-success" href="{{ path('theme_new') }}">
+                {{'theme.create.entry'|trans}}
+          </a>
+    </div>
+           
+{% endblock %}
