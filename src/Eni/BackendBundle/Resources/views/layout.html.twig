@@ -1,9 +1,11 @@
 {% extends 'EniFrontendBundle::layout.html.twig' %}
 
 {% block content %}
-
-	<div class="alert alert-success"> - Formateur</div>
-
+	<div class="alert alert-success">{{ app.user.nom }} {{ app.user.prenom }} - Formateur 
+		<a class="logout" href="{{ path('fos_user_security_logout') }}">
+			{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+		</a>
+	</div>
 
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
@@ -30,7 +32,7 @@
 		</div>
 	</nav>
 
-	{% block navContent %}
-	{% endblock %}
+	{% block BackendContent %}
 
+	{% endblock %}
 {% endblock %}

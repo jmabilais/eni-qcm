@@ -9,6 +9,10 @@ body{
 #header {
     margin-bottom: 10px;
 }
+
+.logout{
+	float: right;
+}
     
 #logo_header_eni{
 	width: 100px;
