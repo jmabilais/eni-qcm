@@ -11,7 +11,7 @@
         {% for entity in entities %}
             <li class="row">
                 <span class="col-md-3"> {{ entity.libelle }}</span>
-                        <a class="btn btn-info" href="{{ path('theme_edit', { 'id': entity.id }) }}">edit</a>
+                <a class="btn btn-info" href="{{ path('theme_edit', { 'id': entity.id }) }}">{{'theme.edit'|trans}}</a>
             </li>
         {% endfor %}
     </ul>
