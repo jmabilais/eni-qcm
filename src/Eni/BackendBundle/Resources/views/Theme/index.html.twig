@@ -1,24 +1,57 @@
 {% extends 'EniBackendBundle::layout.html.twig' %}
 
-{% block title %}Thèmes{% endblock %}
+{% block title %}{{'theme.list.title'|trans}}{% endblock %}
 
 {% block BackendContent %}
-    <h1>{{'theme.list.title'|trans}}</h1>
+<h1>{{'theme.list.title'|trans}}</h1>
 
-    <ul class="theme-records_list">
-       
-        
-        {% for entity in entities %}
-            <li class="row">
-                <span class="col-md-3"> {{ entity.libelle }}</span>
-                <a class="btn btn-info" href="{{ path('theme_edit', { 'id': entity.id }) }}">{{'theme.edit'|trans}}</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <div class="themes-ajouter">
-         <a class="btn btn-success" href="{{ path('theme_new') }}">
-                {{'theme.create.entry'|trans}}
-          </a>
+<ul class="theme-records_list">
+    {% for theme in themes %}
+        <li class="row">
+            <span class="col-md-3"> {{ theme.libelle }}</span>
+            <a class="btn btn-info" href="{{ path('theme_edit', { 'id': theme.id }) }}">
+                {{'theme.edit'|trans}}
+            </a>
+            <button class="btn btn-danger" 
+                    data-toggle="modal" 
+                    data-target="#deleteModal-{{ loop.index0 }}">
+                Supprimer
+            </button>
+        </li>
+    {% endfor %}
+</ul>
+
+{% for theme_delForm in themes_delForms %}
+    <div class="modal fade" id="deleteModal-{{ loop.index0 }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {{ form_start(theme_delForm) }}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Suppression du thème : {{ themes[loop.index0].libelle }}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    La suppression du thème est définitive.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>  
+                    <input type="submit" class="btn btn-danger" value="Confirmer la suppression" /> 
+                </div>
+                {% do theme_delForm.submit.setRendered %}
+                {{ form_end(theme_delForm) }}
+            </div>
+        </div>
     </div>
-           
+{% endfor %}
+
+<div class="themes-ajouter">
+    <a class="btn btn-success" href="{{ path('theme_new') }}">
+        {{'theme.create.entry'|trans}}
+    </a>
+</div>
+
 {% endblock %}

@@ -29,10 +29,18 @@ class ThemeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('EniBackendBundle:Theme')->findAll();
+        $themes = $em->getRepository('EniBackendBundle:Theme')->findAll();
+
+        $themes_delForms = [];
+        foreach($themes as $theme) {
+            $themeId = $theme->getId();
+            $delete_form = $this->createDeleteForm($theme->getId());
+            $themes_delForms[] = $delete_form->createView();
+        }
 
         return array(
-            'entities' => $entities,
+            'themes' => $themes,
+            'themes_delForms' => $themes_delForms
         );
     }
     /**
