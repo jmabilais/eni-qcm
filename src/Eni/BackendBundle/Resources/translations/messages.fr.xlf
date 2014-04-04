@@ -11,6 +11,12 @@
                 <source>theme.create.entry</source>
                 <target>Ajouter un thème</target>
             </trans-unit>
+            <trans-unit id="theme.edit">
+                <source>theme.edit</source>
+                <target>Editer</target>
+            </trans-unit>
+            
+          
         </body>
     </file>
 </xliff>
