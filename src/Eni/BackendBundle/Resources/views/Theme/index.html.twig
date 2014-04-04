@@ -15,7 +15,7 @@
             <button class="btn btn-danger" 
                     data-toggle="modal" 
                     data-target="#deleteModal-{{ loop.index0 }}">
-                Supprimer
+                {{'theme.delete'|trans}}
             </button>
         </li>
     {% endfor %}
@@ -31,15 +31,15 @@
                         &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        Suppression du thème : {{ themes[loop.index0].libelle }}
+                        {{'theme.title.modal.delete'|trans}} : {{ themes[loop.index0].libelle }}
                     </h4>
                 </div>
                 <div class="modal-body">
-                    La suppression du thème est définitive.
+                    {{'theme.body.modal.final.delete'|trans}}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>  
-                    <input type="submit" class="btn btn-danger" value="Confirmer la suppression" /> 
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{'theme.body.modal.cancel'|trans}}</button>  
+                    <input type="submit" class="btn btn-danger" value="{{'theme.body.modal.cofirm.delete'|trans}}" /> 
                 </div>
                 {% do theme_delForm.submit.setRendered %}
                 {{ form_end(theme_delForm) }}
