@@ -65,6 +65,16 @@
                 <source>theme.indexes.enrollment</source>
                 <target>Inscription</target>
             </trans-unit>
+            
+            <trans-unit id="theme.title.modal.edit">
+                <source>theme.title.modal.edit</source>
+                <target>Modification du thème</target>
+            </trans-unit>
+            
+            <trans-unit id="theme.footer.modal.cofirm.edit">
+                <source>theme.footer.modal.cofirm.edit</source>
+                <target>Valider</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

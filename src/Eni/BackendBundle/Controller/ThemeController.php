@@ -32,15 +32,20 @@ class ThemeController extends Controller
         $themes = $em->getRepository('EniBackendBundle:Theme')->findAll();
 
         $themes_delForms = [];
+        $themes_editForms =[];
         foreach($themes as $theme) {
             $themeId = $theme->getId();
             $delete_form = $this->createDeleteForm($theme->getId());
             $themes_delForms[] = $delete_form->createView();
+            
+            $edit_form = $this->createEditForm($theme);
+            $themes_editForms[] = $edit_form->createView();
         }
 
         return array(
             'themes' => $themes,
-            'themes_delForms' => $themes_delForms
+            'themes_delForms' => $themes_delForms,
+            'themes_editForms' => $themes_editForms
         );
     }
     /**
@@ -201,7 +206,7 @@ class ThemeController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('theme_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('theme', array('id' => $id)));
         }
 
         return array(

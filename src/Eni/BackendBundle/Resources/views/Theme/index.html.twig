@@ -9,9 +9,14 @@
     {% for theme in themes %}
         <li class="row">
             <span class="col-md-3"> {{ theme.libelle }}</span>
-            <a class="btn btn-info" href="{{ path('theme_edit', { 'id': theme.id }) }}">
+            {#<a class="btn btn-info" href="{{ path('theme_editForm', { 'id': theme.id }) }}">
                 {{'theme.edit'|trans}}
-            </a>
+            </a>#}
+            <button class="btn btn-info" 
+                    data-toggle="modal" 
+                    data-target="#editModal-{{ loop.index0 }}">
+                {{'theme.edit'|trans}}
+            </button>
             <button class="btn btn-danger" 
                     data-toggle="modal" 
                     data-target="#deleteModal-{{ loop.index0 }}">
@@ -43,6 +48,44 @@
                 </div>
                 {% do theme_delForm.submit.setRendered %}
                 {{ form_end(theme_delForm) }}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+
+{% for theme_editForm in themes_editForms %}
+    <div class="modal fade" id="editModal-{{ loop.index0 }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {{ form_start(theme_editForm) }}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        {{'theme.title.modal.edit'|trans}} : {{ themes[loop.index0].libelle }}
+                    </h4>
+                </div>
+                    
+                <div class="modal-body">
+                    <div class="form-group" class="col-sm-2 control-label">
+                        <label for="eni_backendbundle_theme_libelle">Libellé</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(theme_editForm.libelle, {
+                                     'attr': {
+                                           'class':'form-control '}})
+                            }}
+                        </div>
+                   </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{'theme.body.modal.cancel'|trans}}</button>  
+                    <input type="submit" class="btn btn-warning" value="{{'theme.footer.modal.cofirm.edit'|trans}}" /> 
+                </div>
+                {% do theme_editForm.submit.setRendered %}
+                {{ form_end(theme_editForm) }}
             </div>
         </div>
     </div>
