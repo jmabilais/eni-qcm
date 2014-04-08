@@ -4,11 +4,14 @@ namespace Eni\FrontendBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Eni\UserBundle\Entity\Utilisateur;
 
 /**
  * Promotion
  * @ORM\Table(name="promotion")
  * @ORM\Entity(repositoryClass="Eni\FrontendBundle\Repository\PromotionRepository")
+ * @UniqueEntity("libelle")
  */
 class Promotion {
 

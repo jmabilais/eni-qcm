@@ -28,7 +28,7 @@ class QuestionTirage {
 	private $estMarquee;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Inscription", cascade={"all"}, inversedBy="questionTirage")
+	 * @ORM\ManyToOne(targetEntity="Inscription", cascade={"all"}, inversedBy="questionTirages")
 	 * @ORM\JoinColumn(name="inscription_id", referencedColumnName="id", nullable=false)
 	 */
 	private $inscription;

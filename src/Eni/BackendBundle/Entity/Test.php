@@ -4,6 +4,8 @@ namespace Eni\BackendBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Eni\UserBundle\Entity\Utilisateur;
+use Eni\FrontendBundle\Entity\Inscription;
 
 /**
  * Test
@@ -46,9 +48,10 @@ class Test {
 	private $seuil;
 
 	/**
-	 * @ORM\ManyToMany(targetEntity="Eni\UserBundle\Entity\Utilisateur", mappedBy="tests")
+	 * @ORM\ManyToOne(targetEntity="Eni\UserBundle\Entity\Utilisateur", cascade={"all"}, inversedBy="tests")*
+	 * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id", nullable=false)
 	 */
-	private $utilisateurs;
+	private $utilisateur;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="Eni\FrontendBundle\Entity\Inscription", mappedBy="test", cascade={"persist"})
@@ -64,7 +67,6 @@ class Test {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->utilisateurs = new ArrayCollection();
 		$this->inscriptions = new ArrayCollection();
 		$this->sectionTests = new ArrayCollection();
 	}
@@ -150,32 +152,6 @@ class Test {
 	}
 
 	/**
-	 * Add utilisateurs
-	 * @param Utilisateur $utilisateurs
-	 * @return Test
-	 */
-	public function addUtilisateur(Utilisateur $utilisateurs) {
-		$this->utilisateurs[] = $utilisateurs;
-		return $this;
-	}
-
-	/**
-	 * Remove utilisateurs
-	 * @param Utilisateur $utilisateurs
-	 */
-	public function removeUtilisateur(Utilisateur $utilisateurs) {
-		$this->utilisateurs->removeElement($utilisateurs);
-	}
-
-	/**
-	 * Get utilisateurs
-	 * @return ArrayCollection
-	 */
-	public function getUtilisateurs() {
-		return $this->utilisateurs;
-	}
-
-	/**
 	 * Add inscriptions
 	 * @param Inscription $inscriptions
 	 * @return Test
@@ -225,5 +201,15 @@ class Test {
 	 */
 	public function getSectionTests() {
 		return $this->sectionTests;
+	}
+
+	/*
+	 * Set utilisateur
+	 * @param Utilisateur $utilisateur
+	 * @return Test
+	 */
+	public function setUtilisateur(Utilisateur $utilisateur) {
+		$this->utilisateur = $utilisateur;
+		return $this;
 	}
 }

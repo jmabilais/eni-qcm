@@ -5,10 +5,13 @@ namespace Eni\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Eni\FrontendBundle\Entity\Promotion;
+use Eni\FrontendBundle\Entity\Inscription;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="utilisateur")
+ * @ORM\Entity(repositoryClass="Eni\UserBundle\Repository\UtilisateurRepository")
  */
 class Utilisateur extends BaseUser
 {
@@ -36,11 +39,7 @@ class Utilisateur extends BaseUser
     private $promotion;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Eni\BackendBundle\Entity\Test", inversedBy="utilisateurs")
-     * @ORM\JoinTable(name="utilisateur_test",
-     *      joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="test_id", referencedColumnName="id")}
-     *      )
+     * @ORM\OneToMany(targetEntity="Eni\BackendBundle\Entity\Test", mappedBy="utilisateur", cascade={"persist"})
      */
     private $tests;
 
@@ -54,7 +53,6 @@ class Utilisateur extends BaseUser
      */
     public function __construct() {
         parent::__construct();
-        $this->tests = new ArrayCollection();
         $this->inscriptions = new ArrayCollection();
     }
 
@@ -118,32 +116,6 @@ class Utilisateur extends BaseUser
      */
     public function getPromotion() {
         return $this->promotion;
-    }
-
-    /**
-     * Add tests
-     * @param Test $tests
-     * @return Utilisateur
-     */
-    public function addTest(Test $tests) {
-        $this->tests[] = $tests;
-        return $this;
-    }
-
-    /**
-     * Remove tests
-     * @param Test $tests
-     */
-    public function removeTest(Test $tests) {
-        $this->tests->removeElement($tests);
-    }
-
-    /**
-     * Get tests
-     * @return ArrayCollection
-     */
-    public function getTests() {
-        return $this->tests;
     }
 
     /**
