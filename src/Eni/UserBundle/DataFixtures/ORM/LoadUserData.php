@@ -2,13 +2,15 @@
 
 namespace Eni\UserBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Eni\FrontendBundle\Entity\Promotion;
 
 
-class LoadUserData implements FixtureInterface, ContainerAwareInterface
+class LoadUserData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
     /**
      * @var ContainerInterface
@@ -30,38 +32,37 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
     {
         $userManager = $this->container->get('fos_user.user_manager');
 
-        $userJo = $userManager->createUser();
-        $userJo->setUsername('jmabilais');
-        $userJo->setPlainPassword('test');
-        $userJo->setNom('Mabilais');
-        $userJo->setPrenom('Jonathan');
-        $userJo->addRole('ROLE_FORMATEUR');
-        $userJo->setEnabled(true);
-        $userJo->setEmail('jonathan.mabilais@campus-eni.fr');
+        $tUtilisateurs = [
+            ['username' => 'mneute', 'nom' => 'neute', 'prenom' => 'Morgan', 'role' => 'ROLE_FORMATEUR', 'email' => 'mneute@eni.fr'],
+            ['username' => 'ebertho', 'nom' => 'bertho', 'prenom' => 'Etienne', 'role' => 'ROLE_FORMATEUR', 'email' => 'ebertho@eni.fr'],
+            ['username' => 'jmabilais', 'nom' => 'mabilais', 'prenom' => 'Jonathan', 'role' => 'ROLE_FORMATEUR', 'email' => 'jmabilais@eni.fr'],
+            ['username' => 'pvakala', 'nom' => 'vakala', 'prenom' => 'Pierre', 'role' => 'ROLE_FORMATEUR', 'email' => 'pvakala@eni.fr'],
+            ['username' => 'cand1', 'nom' => 'candidat', 'prenom' => 'candidat', 'role' => 'ROLE_CANDIDAT', 'email' => 'cand1@eni.fr'],
+        ];
 
-        $manager->persist($userJo);
-        $manager->flush();
+        foreach ($tUtilisateurs as $tUtilisateur) {
+            $user = $userManager->createUser();
+            $user->setUsername($tUtilisateur['username']);
+            $user->setPlainPassword('test');
+            $user->setNom($tUtilisateur['nom']);
+            $user->setPrenom($tUtilisateur['prenom']);
+            $user->addRole($tUtilisateur['role']);
+            $user->setEnabled(true);
+            $user->setEmail($tUtilisateur['email']);
+            if($tUtilisateur['role'] == 'ROLE_CANDIDAT'){
+                $promotion = $this->getReference('CDI7');
+                $user->setPromotion($promotion);
+            }
+            $userManager->updateUser($user);
+            $this->addReference($tUtilisateur['username'], $user);
+        }
+    }
 
-        $userPierre = $userManager->createUser();
-        $userPierre->setUsername('pvakala');
-        $userPierre->setPlainPassword('test');
-        $userPierre->setNom('Vakala');
-        $userPierre->setPrenom('Pierre');
-        $userPierre->addRole('ROLE_FORMATEUR');
-        $userPierre->setEnabled(true);
-        $userPierre->setEmail('a3ka@live.fr');
-        
-        $userCandidat1 = $userManager->createUser();
-        $userCandidat1->setUsername('cand1');
-        $userCandidat1->setPlainPassword('test');
-        $userCandidat1->setNom('Examen');
-        $userCandidat1->setPrenom('Info');
-        $userCandidat1->addRole('ROLE_CANDIDAT');
-        $userCandidat1->setEnabled(true);
-        $userCandidat1->setEmail('a3ka@live.fr');
-        $userCandidat1->setPromotion('CDI007');
-
-        $manager->persist($userPierre);
-        $manager->flush();
+    /**
+    * {@inheritDoc}
+    */
+    public function getOrder()
+    {
+        return 2; // l'ordre dans lequel les fichiers sont chargés
     }
 }
