@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
 */
 class ThemeRepository extends EntityRepository
 {
+	public function findByLibelle($libelle)
+    {
+		$alias = 't';
+		$qb = $this->createQueryBuilder($alias);
+		$qb
+		->where('t.libelle LIKE :libelle')
+		->setParameter('libelle', '%' . $libelle . '%')
+		;
+
+		return $qb->getQuery()->getOneOrNullResult();
+	}
 }

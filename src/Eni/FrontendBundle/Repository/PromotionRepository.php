@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class PromotionRepository extends EntityRepository
 {
+	public function findByLibelle($libelle)
+    {
+        $alias = 'p';
+        $qb = $this->createQueryBuilder($alias);
+        $qb
+            ->where('p.libelle LIKE :libelle')
+            ->setParameter('libelle', '%' . $libelle . '%')
+        ;
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }
