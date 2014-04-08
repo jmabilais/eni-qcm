@@ -70,9 +70,9 @@
                 </div>
                     
                 <div class="modal-body">
-                    <div class="form-group" class="col-sm-2 control-label">
-                        <label for="eni_backendbundle_theme_libelle">Libellé</label>
-                        <div class="col-sm-10">
+                    <div class="form-group" >
+                        <label for="eni_backendbundle_theme_libelle" class="col-sm-2 control-label">Libellé: </label>
+                        <div class="col-sm-10 ">
                             {{ form_widget(theme_editForm.libelle, {
                                      'attr': {
                                            'class':'form-control '}})
@@ -91,10 +91,53 @@
     </div>
 {% endfor %}
 
-<div class="themes-ajouter">
+{#<div class="themes-ajouter">
     <a class="btn btn-success" href="{{ path('theme_new') }}">
         {{'theme.create.entry'|trans}}
     </a>
-</div>
+</div>#}
+    
+
+    
+<!-- Button trigger modal -->
+
+
+
+<button class="btn btn-success" data-toggle="modal" data-target="#myModal">
+  Ajouter un thème
+</button>
+
+<!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            
+             {{form_start(theme_addForm)}}
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Ajouter</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-10 ">
+                            {{ form_widget(theme_addForm.libelle, {
+                                     'attr': {
+                                           'class':'form-control '}})
+                            }}
+                        </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal"> {{'theme.body.modal.close.edit'|trans}} </button>
+                  <button type="submit" class="btn btn-primary"> {{'theme.body.modal.save.add'|trans}}</button>
+                  
+                  {#<button type="button" class="btn btn-default" data-dismiss="modal">{{'theme.body.modal.cancel'|trans}}</button>  
+                  <input type="submit" class="btn btn-warning" value="{{'theme.body.modal.save.edit'|trans}}" /> #}
+                </div>
+                
+                {% do theme_addForm.submit.setRendered %}
+                {{ form_end(theme_addForm) }}
+        </div>
+      </div>
+    </div>
+
 
 {% endblock %}

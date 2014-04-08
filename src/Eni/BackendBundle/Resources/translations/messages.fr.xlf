@@ -75,6 +75,17 @@
                 <source>theme.footer.modal.cofirm.edit</source>
                 <target>Valider</target>
             </trans-unit>
+            
+             <trans-unit id="theme.body.modal.close.edit">
+                <source>theme.body.modal.close.edit</source>
+                <target>Fermer</target>
+            </trans-unit>
+            
+            <trans-unit id="theme.body.modal.save.add">
+                <source>theme.body.modal.save.add</source>
+                <target>Enregistrer</target>
+            </trans-unit>
+            
         </body>
     </file>
 </xliff>
