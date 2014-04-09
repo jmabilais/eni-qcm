@@ -43,7 +43,7 @@ class LoginListener {
 		$oUtilisateurConnecte = $this->oSecurityContext->getToken()->getUser();
 		/* @var $oUtilisateurConnecte Utilisateur */
 
-		if ($oUtilisateurConnecte->isFormateur() || $oUtilisateurConnecte->isAdmin()) {
+		if ($oUtilisateurConnecte->isFormateur()) {
 			$oResponse = new RedirectResponse($this->oRouter->generate('accueil_administration'));
 			$oResponseEvent->setResponse($oResponse);
 		} else {

@@ -13,7 +13,12 @@ class DefaultController extends Controller
      * @Template()
      */
     public function indexAction()
-    {
-        return array();
+            
+    {   $em = $this->getDoctrine()->getManager();
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $tests = $em->getRepository('EniBackendBundle:Test')
+                ->getTestsByUser($user);
+      
+        return array('tests' => $tests);
     }
 }
